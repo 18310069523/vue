@@ -1,6 +1,6 @@
 <template>
 <div class="header" id="header">
-	<a><img src="../images/a1.jpg" alt=""></a>	
+	<a><img src="../../static/images/a1.jpg" alt=""></a>	
 	<label>消息</label>
 	<i>+</i>
 </div>

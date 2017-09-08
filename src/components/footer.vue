@@ -25,5 +25,9 @@
     .footer{
         width: 100%;
         height: 44px;   
+        display: flex;
+    }
+    .footer dl{
+        flex:1;
     }
 </style>
