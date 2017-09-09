@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 0.32rem;
+}
+
+.box {
+    display: flex;
+    padding: 0.5rem 0.3rem;
+    border-bottom: 1px solid black;
+}
+
+.box img {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    margin-right: 0.2rem;
+}
+
+.box section {
+    flex-grow: 3
+}
+
+.box span {
+    flex-grow: 1
+}
+
+.foot {
+    display: flex;
+    border-top: 1px solid #eee;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.foot section {
+    flex: 1;
+    padding: 0.2rem 0;
+    text-align: center
+}
+
+.foot section img {
+    width: 0.9rem
+}
+

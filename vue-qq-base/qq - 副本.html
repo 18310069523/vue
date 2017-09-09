@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <div class="">
+        <div id="app">
+
+        </div>
+    </div>
+
+    <template id="tem">
+        <div>
+            
+            <component :is="comState"></component>
+            <section class="foot">
+                <footerlist v-for="i in footdata" :everydata="i" ></footerlist>
+            </section>
+            
+        </div>
+    </template>
+
+    <template id="msg">
+        <main>
+                     <everylist v-for="i in datalist" :everyrow="i"></everylist>
+            </main>
+        
+    </template>
+    <template id="call">
+        <main>
+                     <everylist v-for="i in datalist" :everyrow="i"></everylist>
+            </main>
+        
+    </template>
+    <template id="everyList">
+      <div class="box">
+          <img :src="everyrow.img" alt="">
+          <section>
+              {{everyrow.name}}
+          </section>
+          <span> {{everyrow.time}}</span>
+      </div>
+    </template>
+    <template id="footerList">  
+       <section  @click="changeFn(everydata.com)">
+           <img :src="everydata.img" alt="">
+           <p>{{everydata.name}}</p>
+       </section>
+    </template>
+</body>
+<script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px"
+</script>
+
+<script>
+    var datalist = [{
+        class: "1",
+        name: "腾讯新闻",
+        info: '萌妹子叫"黄埔军校"开学3天火了',
+        time: "下午6:28",
+        img: "images/1.jpg"
+    }, {
+        class: "2",
+        name: "群通知",
+        info: "Adam 邀请你加入群 夏之梦",
+        time: "下午6:01",
+        img: "images/2.jpg"
+    }, {
+        class: "3",
+        name: "一需重孝二重义",
+        info: "山西：八维的学生真是可怜到了极点",
+        time: "下午4:29",
+        img: "images/3.jpg"
+    }, {
+        class: "4",
+        name: "QQ直播",
+        info: "Hi，你附近200米有个美女在直播哦~",
+        time: "昨天",
+        img: "images/4.jpg"
+    }, {
+        class: "5",
+        name: "啤酒 饮料 矿泉水（8）",
+        info: "。。。。",
+        time: "昨天",
+        img: "images/5.jpg"
+    }]
+    var calllist = datalist.slice(0, 3)
+    var proplist = datalist.slice(0, 2)
+    var footdata = [{
+        class: "11",
+        com: "msgCom",
+        name: "消息",
+        img: "images/pic2_03.jpg"
+    }, {
+        class: "21",
+        com: "callCom",
+        name: "联系人",
+        img: "images/pic3_03.jpg"
+    }, {
+        class: "31",
+        com: "propCom",
+        name: "动态",
+        img: "images/pic5_03.jpg"
+    }]
+    Vue.component("everylist", {
+        props: ["everyrow"],
+        template: "#everyList"
+    })
+
+    var vm = new Vue({
+        el: "#app",
+
+        template: "#tem",
+        data: {
+            comState: "msgCom",
+            footdata: footdata
+        },
+
+        components: {
+            msgCom: {
+                data() {
+                    return {
+                        datalist: datalist
+                    }
+                },
+                template: "#msg",
+
+            },
+            callCom: {
+                data() {
+                    return {
+                        datalist: calllist
+                    }
+                },
+                template: "#msg",
+
+            },
+            propCom: {
+                data() {
+                    return {
+                        datalist: proplist
+                    }
+                },
+                template: "#msg",
+
+            },
+            footerlist: {
+                props: ["everydata"],
+                template: "#footerList",
+                methods: {
+                    changeFn(i) {
+                        console.log(i)
+                        this.$parent.comState = i
+                    }
+                },
+            }
+        }
+
+    })
+</script>
+
+</html>
