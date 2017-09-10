@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+      *{margin:0;padding:0;list-style: none;box-sizing: border-box;}
+      body{font-size: 0.32rem;}
+      main{
+         width:100%;
+      }
+      main dl{
+         width:100%;
+         display: flex;
+         padding:.3rem;
+         border-bottom: 1px solid black;
+      }
+      main dl dd{
+         padding-left: .2rem;
+         line-height: .5rem;
+      }
+      footer{
+         width:100%;
+         display: flex;
+         position: fixed;
+         bottom:0;
+      }
+      footer dl{
+         flex:1;
+         text-align: center;
+      }
+      footer dl dt img{
+         width:100%;
+      }
+      footer dl dt img{
+         margin:0 auto;
+         width:30%;
+      }
+   </style>
+</head>
+<body>
+   <div id="app">
+
+   </div>
+
+   <template id="tem">
+      <div>
+       <p @click="getname()">weqeqwe</p>
+         <msg-com :is="comState"></msg-com>
+         <footer>
+            <foo-com v-for="i in footdata" :everydata="i"></foo-com>
+         </footer>
+      </div>
+   </template>
+   <template id="msg">
+      <main>
+         <list v-for="i in datalist" :everydata="i"></list>
+      </main>
+   </template>
+   <template id="call">
+      <main>
+         <list v-for="i in datalist" :everydata="i"></list>
+      </main>
+   </template>
+
+   <template id="list">
+      <div class="box">
+         <dl>
+           <!--  <dt><img :src="everydata.img"></dt> -->
+            <dd>
+               <ul>
+                  <li>{{everydata.name}}</li>
+                  <li>{{everydata.info}}</li>
+               </ul>
+            </dd>
+         </dl>
+      </div>
+   </template>
+
+   <template id="foo">
+      <dl>
+        <!--  <dt><img :src="everydata.img" ></dt> -->
+         <dd @click="link(everydata.com)">{{everydata.name}} </dd>
+      </dl>
+   </template>
+
+   <script>
+      document.documentElement.style.fontSize =   document.documentElement.clientWidth / 7.5 + "px"
+   </script>
+   <script src="vue2.js"></script>
+   <script>
+      var datalist = [{
+            class: "1",
+            name: "腾讯新闻",
+            info: '萌妹子叫"黄埔军校"开学3天火了',
+            time: "下午6:28",
+            img: "img/1 (1).gif"
+         }, {
+            class: "2",
+            name: "群通知",
+            info: "Adam 邀请你加入群 夏之梦",
+            time: "下午6:01",
+            img: "img/1 (2).gif"
+         }, {
+         class: "3",
+            name: "一需重孝二重义",
+            info: "山西：八维的学生真是可怜到了极点",
+            time: "下午4:29",
+            img: "img/1 (3).gif"
+         }, {
+            class: "4",
+            name: "QQ直播",
+            info: "Hi，你附近200米有个美女在直播哦~",
+            time: "昨天",
+            img: "img/1 (4).gif"
+         }, {
+            class: "5",
+            name: "啤酒 饮料 矿泉水（8）",
+            info: "。。。。",
+            time: "昨天",
+            img: "img/1 (5).gif"
+         }
+      ];
+      var footdata = [{
+            class: "11",
+            com: "msgCom",
+            name: "消息",
+            img: "img/pic2_03.jpg"
+         }, {
+            class: "21",
+            com: "callCom",
+            name: "联系人",
+            img: "img/pic3_03.jpg"
+         }, {
+            class: "31",
+            com: "propCom",
+            name: "动态",
+            img: "img/pic5_03.jpg"
+         }
+      ]
+		var calllist=datalist.slice(0,3)
+		var propllist=datalist.slice(0,2)
+
+      Vue.component("list",{
+         props:["everydata"],
+         template:"#list"
+      })
+      new Vue({
+         el:"#app",
+         template:"#tem",
+         data:{
+			comState:"msgCom",
+            footdata:footdata
+         },
+         methods:{
+         	
+         	getname(){
+         		console.log(this.$children)
+         	}
+         },
+         components:{
+            msgCom:{
+               data(){
+                  return {
+                     datalist:datalist,
+                     name:123
+                  }
+               },
+               template:"#msg",
+               
+            },
+			callCom:{
+					data(){
+                  return {
+                     datalist:calllist,
+                     name:123
+                  }
+               },
+               template:"#msg"
+			},
+			propCom:{
+					data(){
+                  return {
+                     datalist:propllist,
+                     name:123
+                  }
+               },
+               template:"#msg"
+			},
+            fooCom:{
+               props:['everydata'],
+               template:"#foo",
+               methods:{
+                  link(i){
+								console.log(this.$parent);
+                  }
+               }
+            }
+         }
+      })
+   </script>
+</body>
+</html>
