@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+
+	</div>
+	<template id="tem">
+		<child></child>
+	</template>
+	<script type="text/x-template" id="child">
+		<div>
+			<input type="radio" name="sex" value="one" v-model="names">
+			<input type="radio" name="sex" value="two" v-model="names">
+			<span>{{names}}</span>
+		</div>
+	</script>
+	<script src="vue2.js"></script>
+	<script>
+	new Vue({
+		el:"#app",
+		template:"#tem",
+		components:{
+			child:{
+				template:"#child",
+				data(){
+					return{
+						names:""
+					}
+				}
+			}
+		}
+	})
+	</script>
+</body>
+</html>
