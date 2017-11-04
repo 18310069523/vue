@@ -7,7 +7,8 @@ var connection = mysql.createConnection({
   port: 3306
 });
 
-connection.connect( ()=>{
+connection.connect( (e)=>{
+    console.log(e)
     console.log('数据库连接成功')
 } );
 

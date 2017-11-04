@@ -31,7 +31,8 @@ export default {
   methods: {
     loginDo () {
       this.$http.post('/api/login', this.user).then((data) => {
-        console.log(data)
+        window.localStorage.setItem('user', JSON.stringify(data))
+        this.$root.user = data
         this.$router.replace('/home')
       })
       // window.localStorage.setItem('user', JSON.stringify(this.user))

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <span v-if="$root.user"></span>
     <template v-if="$route.path != '/login'">
       <HeaderBar></HeaderBar>
       <div class="content">
@@ -32,9 +33,9 @@
           </template>
         </el-menu>
         <div class="right-content">
-          <el-breadcrumb separator="/">
+          <!-- <el-breadcrumb separator="/">
             <el-breadcrumb-item v-for="(item, index) in $route.matched" :key="index">{{item.meta.title}}</el-breadcrumb-item>
-          </el-breadcrumb>
+          </el-breadcrumb> -->
           <router-view/>
         </div>
       </div>
@@ -79,7 +80,7 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.matched)
+    console.log(this.$root.user)
   }
 }
 </script>
